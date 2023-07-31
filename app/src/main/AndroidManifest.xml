@@ -11,6 +11,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Amoxarifado"
-        tools:targetApi="31" />
+        tools:targetApi="31">
+        <activity
+            android:name=".Recebimento"
+            android:exported="false" />
+        <activity
+            android:name=".Pedido"
+            android:exported="false" />
+        <activity
+            android:name=".Alteracao"
+            android:exported="false" />
+        <activity
+            android:name=".DadosUser"
+            android:exported="false" />
+        <activity
+            android:name=".HomeUser"
+            android:exported="false" />
+        <activity
+            android:name=".HomeAdm"
+            android:exported="false" />
+        <activity
+            android:name=".Dados"
+            android:exported="false" />
+        <activity
+            android:name=".CriacaoItem"
+            android:exported="false" />
+        <activity
+            android:name=".Cadastro"
+            android:exported="false" />
+        <activity
+            android:name=".Main"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>
