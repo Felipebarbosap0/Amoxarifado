@@ -7,58 +7,46 @@
     android:onClick="voltar"
     tools:context=".Dados">
 
+
     <TextView
-        android:id="@+id/tvPrecoApagar"
-        android:layout_width="216dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="50dp"
-        android:text="Preço"
+        android:id="@+id/tvQuantidade"
+        android:layout_width="239dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="28dp"
+        android:text="Quantidade"
         android:textAlignment="center"
-        android:textSize="18dp"
+        android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvNomeApagar"
-        app:layout_constraintStart_toStartOf="@+id/tvNomeApagar"
-        app:layout_constraintTop_toBottomOf="@+id/tvNomeApagar" />
-
+        app:layout_constraintEnd_toEndOf="@+id/tvNome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvNome"
+        app:layout_constraintTop_toBottomOf="@+id/tvNome" />
 
     <TextView
-        android:id="@+id/tvNomeApagar"
-        android:layout_width="224dp"
-        android:layout_height="36dp"
+        android:id="@+id/tvNome"
+        android:layout_width="236dp"
+        android:layout_height="62dp"
         android:layout_marginStart="158dp"
         android:layout_marginTop="13dp"
         android:layout_marginEnd="158dp"
         android:text="Nome"
         android:textAlignment="center"
-        android:textSize="18dp"
+        android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <TextView
-        android:id="@+id/tvCategoriaApagar"
-        android:layout_width="229dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="136dp"
-        android:text="Categoria"
-        android:textAlignment="center"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvPrecoApagar"
-        app:layout_constraintHorizontal_bias="0.692"
-        app:layout_constraintStart_toStartOf="@+id/tvPrecoApagar"
-        app:layout_constraintTop_toBottomOf="@+id/tvNomeApagar" />
-
     <Button
-        android:id="@+id/btnApagar"
+        android:id="@+id/btnadd"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:onClick="apagarContato"
         android:text="Apagar item"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -68,21 +56,22 @@
         android:layout_marginBottom="50dp"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnApagar"
-        app:layout_constraintStart_toStartOf="@+id/btnApagar" />
+        app:layout_constraintEnd_toEndOf="@+id/btnadd"
+        app:layout_constraintStart_toStartOf="@+id/btnadd" />
 
     <TextView
-        android:id="@+id/tvIdApagar"
-        android:layout_width="226dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/tvId"
+        android:layout_width="235dp"
+        android:layout_height="50dp"
         android:text="ID"
         android:textAlignment="center"
         android:textAllCaps="false"
+        android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvCategoriaApagar"
-        app:layout_constraintStart_toStartOf="@+id/tvCategoriaApagar"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategoriaApagar" />
+        app:layout_constraintEnd_toEndOf="@+id/tvQuantidade"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/tvQuantidade"
+        tools:layout_editor_absoluteY="363dp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -95,6 +84,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/btnAtualizar"
+        android:layout_width="151dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="13dp"
+        android:onClick="atualizar"
+        android:text="Atualizar item"
+        app:layout_constraintBottom_toTopOf="@+id/btnadd"
+        app:layout_constraintEnd_toEndOf="@+id/btnadd"
+        app:layout_constraintStart_toStartOf="@+id/btnadd" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

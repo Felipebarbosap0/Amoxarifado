@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class Dados extends AppCompatActivity {
     Map<String, String> dadosContatos;
-    TextView tvNomeApagar, tvPrecoApagar, tvCategoriaApagar, tvIdApagar;
+    TextView tvNome, tvQuantidade, tvId;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference deleteRef;
@@ -35,32 +35,35 @@ public class Dados extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
-        iniciarComponentes(); // Inicializa os componentes da tela
+        iniciarComponentes();
 
-        mostrarContato(); // Exibe os detalhes do contato na tela
+        mostrarContato();
     }
 
     private void mostrarContato() {
-        tvNomeApagar.setText(dadosContatos.get("Nome")); // Define o nome do contato no TextView correspondente
-        tvPrecoApagar.setText(dadosContatos.get("Preço")); // Define o email do contato no TextView correspondente
-        tvCategoriaApagar.setText(dadosContatos.get("Categoria")); // Define o telefone do contato no TextView correspondente
-        tvIdApagar.setText(dadosContatos.get("Id"));
+        tvNome.setText(dadosContatos.get("Nome"));
+        tvQuantidade.setText(dadosContatos.get("Quantidade"));
+        tvId.setText(dadosContatos.get("Id"));
     }
 
     private void iniciarComponentes() {
 
-        dadosContatos = HomeAdm.dados; // Obtém os dados do contato da tela VContatos
-        tvNomeApagar = findViewById(R.id.tvNomeApagar); // Obtém a referência do TextView para o nome do contato
-        tvCategoriaApagar = findViewById(R.id.tvCategoriaApagar);// Obtém a referência do TextView para o email do contato
-        tvIdApagar = findViewById(R.id.tvIdApagar);
-        tvPrecoApagar = findViewById(R.id.tvPrecoApagar); // Obtém a referência do TextView para o telefone do contato
-        mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
-        database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database
+        dadosContatos = HomeAdm.dados;
+        tvNome = findViewById(R.id.tvNome);
+        tvId = findViewById(R.id.tvId);
+        tvQuantidade = findViewById(R.id.tvQuantidade);
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+    }
+
+    public void atualizar(View view){
+        Intent intent = new Intent(getApplicationContext(), Atualizar.class);
+        startActivity(intent);
     }
 
     public void apagarContato(View view){
         deleteRef = database.getReference("User/" + mAuth.getUid()
-                + "/Item/" + dadosContatos.get("Nome") + "/"); // Cria uma referência para o contato a ser deletado no banco de dados
+                + "/Item/" + dadosContatos.get("Nome") + "/");
 
         deleteRef.removeValue()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -74,7 +77,7 @@ public class Dados extends AppCompatActivity {
                             startActivity(i);
                         }else {
                             Toast.makeText(getApplicationContext(),
-                                    "Deu ruim ai",
+                                    "Contato não foi deletado com sucesso",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

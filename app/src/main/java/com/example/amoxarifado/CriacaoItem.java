@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class CriacaoItem extends AppCompatActivity {
-    EditText Id, Nome,Preco,Categoria;
+    EditText Id, Nome,Quantidade;
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -65,8 +65,7 @@ public class CriacaoItem extends AppCompatActivity {
     private void ativador() {
         Id = findViewById(R.id.editTextItemId);
         Nome = findViewById(R.id.editTextItemName);
-        Preco = findViewById(R.id.editTextitemPreco);
-        Categoria = findViewById(R.id.editTextitemCategoria);
+        Quantidade = findViewById(R.id.editTextitemQuantidade);
         imagem = findViewById(R.id.imageView);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -114,8 +113,7 @@ public class CriacaoItem extends AppCompatActivity {
                                     myRef = database.getReference("User/" + mAuth.getUid() + "/Item/" + Nome.getText().toString() +  "/");
 
                                     dados.put("ID",Id.getText().toString());
-                                    dados.put("Preço",Preco.getText().toString());
-                                    dados.put("Categoria",Categoria.getText().toString());
+                                    dados.put("Quanridade",Quantidade.getText().toString());
                                     dados.put("Url", uri.toString());
 
 

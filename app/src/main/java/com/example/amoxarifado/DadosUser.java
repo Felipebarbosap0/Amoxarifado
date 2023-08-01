@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class DadosUser extends AppCompatActivity {
     Map<String, String> dadosContatos;
-    TextView tvNomeApagar, tvPrecoApagar, tvCategoriaApagar, tvIdApagar;
+    TextView NomeUser, IdUser, QuantUser, QuantInser;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference deleteRef;
@@ -42,26 +42,26 @@ public class DadosUser extends AppCompatActivity {
     }
 
     private void mostrarContato() {
-        tvNomeApagar.setText(dadosContatos.get("Nome")); // Define o nome do contato no TextView correspondente
-        tvPrecoApagar.setText(dadosContatos.get("Preço")); // Define o email do contato no TextView correspondente
-        tvCategoriaApagar.setText(dadosContatos.get("Categoria")); // Define o telefone do contato no TextView correspondente
-        tvIdApagar.setText(dadosContatos.get("Id"));
+        NomeUser.setText(dadosContatos.get("Nome")); // Define o nome do contato no TextView correspondente
+        IdUser.setText(dadosContatos.get("ID")); // Define o email do contato no TextView correspondente
+        QuantUser.setText(dadosContatos.get("Quantidade")); // Define o telefone do contato no TextView correspondente
+
     }
 
     private void iniciarComponentes() {
 
         dadosContatos = HomeAdm.dados; // Obtém os dados do contato da tela VContatos
-        tvNomeApagar = findViewById(R.id.tvNomeApagar); // Obtém a referência do TextView para o nome do contato
-        tvCategoriaApagar = findViewById(R.id.tvCategoriaApagar);// Obtém a referência do TextView para o email do contato
-        tvIdApagar = findViewById(R.id.tvIdApagar);
-        tvPrecoApagar = findViewById(R.id.tvPrecoApagar); // Obtém a referência do TextView para o telefone do contato
+        NomeUser = findViewById(R.id.tvNome); // Obtém a referência do TextView para o nome do contato
+        QuantUser = findViewById(R.id.QuantUser);// Obtém a referência do TextView para o email do contato
+        IdUser = findViewById(R.id.tvId);
+        QuantInser = findViewById(R.id.QuantInser); // Obtém a referência do TextView para o telefone do contato
         mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
         database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database
     }
 
-    public void apagarContato(View view){
-        deleteRef = database.getReference("User/" + mAuth.getUid()
-                + "/Item/" + dadosContatos.get("Nome") + "/"); // Cria uma referência para o contato a ser deletado no banco de dados
+
+    public void adcionar(View view){
+        DatabaseReference updateRef = database.getReference("User/" + mAuth.getUid() + "/Item/" + dadosContatos.get("Nome") + "/");
 
         deleteRef.removeValue()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

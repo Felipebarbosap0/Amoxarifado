@@ -29,6 +29,7 @@ import java.util.Map;
 public class HomeUser extends AppCompatActivity {
     ListView list;
     List<String> nomes;
+    List<String> quantidade;
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -49,7 +50,7 @@ public class HomeUser extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Adapyter adapter = new Adapyter(getApplicationContext(),nomes);
+                Adapyter adapter = new Adapyter(getApplicationContext(),nomes,quantidade);
                 list.setAdapter(adapter);
 
 
@@ -99,6 +100,7 @@ public class HomeUser extends AppCompatActivity {
     private void ativar() {
         list = findViewById(R.id.list) ;
         nomes = new ArrayList<>();
+        quantidade = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         dados = new HashMap<>();

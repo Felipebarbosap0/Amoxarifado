@@ -31,20 +31,11 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextitemPreco"
+        android:id="@+id/editTextitemQuantidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Preço do Item"
-        android:inputType="text"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editTextitemCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Categoria do item"
+        android:hint="Qunatidade do Item"
         android:inputType="text"
         android:textStyle="bold" />
 

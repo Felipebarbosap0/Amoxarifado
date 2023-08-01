@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Amoxarifado"
         tools:targetApi="31">
         <activity
+            android:name=".Atualizar"
+            android:exported="false" />
+        <activity
             android:name=".Recebimento"
             android:exported="false" />
         <activity
