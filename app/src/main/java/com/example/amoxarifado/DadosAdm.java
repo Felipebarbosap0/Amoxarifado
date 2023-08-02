@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
-public class Dados extends AppCompatActivity {
+public class DadosAdm extends AppCompatActivity {
     Map<String, String> dadosContatos;
     TextView tvNome, tvQuantidade, tvId;
     FirebaseAuth mAuth;
