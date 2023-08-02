@@ -18,7 +18,13 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="603dp" />
+        android:layout_height="550dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:text="Pedido" />
 
     <Button
         android:id="@+id/buttonAddItem"

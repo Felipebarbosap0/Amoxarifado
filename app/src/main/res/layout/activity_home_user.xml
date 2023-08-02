@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeUser">
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".HomeAdm">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="603dp" />
+
+    <Button
+        android:id="@+id/buttonAddItem"
+        android:layout_width="104dp"
+        android:layout_height="48dp"
+        android:onClick="btnSair"
+        android:text="Sair" />
+
+</LinearLayout>

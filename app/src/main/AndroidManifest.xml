@@ -34,7 +34,7 @@
             android:name=".HomeAdm"
             android:exported="false" />
         <activity
-            android:name=".DadosAdm"
+            android:name=".Dados"
             android:exported="false" />
         <activity
             android:name=".CriacaoItem"
