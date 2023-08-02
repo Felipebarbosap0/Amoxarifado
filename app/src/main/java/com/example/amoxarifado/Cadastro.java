@@ -3,6 +3,7 @@ package com.example.amoxarifado;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -56,38 +57,61 @@ public class Cadastro extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
 
         }else {
+            //receber o e-mail tipo usuario || tipo adm
             String email = editTextEmail.getText().toString();
             String senha = editTextSenha.getText().toString();
-            mAuth.createUserWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>(){
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            Toast.makeText(getApplicationContext(),"Cadastro Realizado com sucesso!!!",
-                                    Toast.LENGTH_SHORT).show();
-                            usersRef = database.getReference("User/" + mAuth.getUid()+"/");
+            // estabelecer bifurcação
 
-                            dados.put("Nome",editTextNome.getText().toString().trim());
-                            dados.put("Email",editTextEmail.getText().toString().trim());
-                            dados.put("Senha",editTextSenha.getText().toString().trim());
+            //teste para saber se existe @senai.com no domínio.
+            //proibir cadastro
 
-                            usersRef.setValue(dados);
-                            Toast.makeText(getApplicationContext(),
-                                    "Cadastro Realizado!!!",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),Main.class);
-                            startActivity(intent);
+            //se exise @senai.com.br
+
+            if (!email.contains("@")) {
+                Toast.makeText(getApplicationContext(),
+                        "E-mail inválido. Certifique-se de que o e-mail contenha um '@'",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                // Separa o e-mail em duas partes: nome de usuário e domínio
+                String[] parts = email.split("@");
+                String dominio = parts[1];
+
+                // Verifica o tipo de usuário
+                if (dominio.equals("senai.com")) {
+
+                    Toast.makeText(getApplicationContext(),
+                            "E-mail corporativo. Usuários com email corporativo, devem ser cadastrados pela prórpia organização.",
+                            Toast.LENGTH_LONG).show();
+            }
+            //senão existir @ email genérico
+            else{
+                mAuth.createUserWithEmailAndPassword(email, senha)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                Toast.makeText(getApplicationContext(), "Cadastro Realizado com sucesso!!!",
+                                        Toast.LENGTH_SHORT).show();
+                                usersRef = database.getReference("User/" + mAuth.getUid() + "/");
+
+                                dados.put("Nome", editTextNome.getText().toString().trim());
+                                dados.put("Email", editTextEmail.getText().toString().trim());
+                                dados.put("Senha", editTextSenha.getText().toString().trim());
+
+                                usersRef.setValue(dados);
+                                Toast.makeText(getApplicationContext(),
+                                        "Cadastro Realizado!!!",
+                                        Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), Main.class);
+                                startActivity(intent);
 
 
-                        }
-                    });
+                            }
+                        });
+                }
 
+            }
         }
     }
-
-
-
-
-
-
 }
