@@ -50,80 +50,90 @@ public class Main extends AppCompatActivity {
         }
     }
     public void btnLogin(View view) {
-        if (editTextUser.getText().toString().isEmpty() &&
+        if (editTextUser.getText().toString().isEmpty() ||
                 editTextSenha.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     "É necessário preencher todos os campos",
                     Toast.LENGTH_LONG).show();
-        } else if (editTextUser.getText().toString().isEmpty()) {
-            Toast.makeText(getApplicationContext(),
-                    "O campo de email precisa ser preenchido",
-                    Toast.LENGTH_LONG).show();
-        } else if (editTextUser.getText().toString().isEmpty()) {
-            Toast.makeText(getApplicationContext(),
-                    "O campo de senha precisa ser preenchido",
-                    Toast.LENGTH_LONG).show();
-        } else {
-
+        }
+        else {
+           // estabelecendo variáveis
             mAuth.signInWithEmailAndPassword(editTextUser.getText().toString(),
                             editTextSenha.getText().toString())
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
 
-                                Log.d("user", "usuário logado");
-                                Intent i = new Intent(getApplicationContext(), HomeUser.class);
+            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                        // Verifica se o e-mail contém um '@'
+                        if (!editTextUser.getText().toString().contains("@")) {
+                            Toast.makeText(getApplicationContext(),
+                                    "E-mail inválido. Certifique-se de que o e-mail contenha um '@'",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            // Separa o e-mail em duas partes: nome de usuário e domínio
+                            String[] parts = editTextUser.getText().toString().split("@");
+                            String dominio = parts[1];
+
+                            // Verifica o tipo de usuário
+                            if (dominio.equals("senai.com")) {
+
+                                // Usuário é do tipo 'adm'
+                                Log.d("user", "Administrador logado");
+                                Intent i = new Intent(getApplicationContext(), HomeAdm.class);
                                 startActivity(i);
                             } else {
-                                if (editTextSenha.getText().toString().toCharArray().length < 6) {
-
-                                    Toast.makeText(getApplicationContext(),
-                                            "Senha não possui a quantidade necessária",
-                                            Toast.LENGTH_LONG).show();
-                                } else {
-                                    String confir = "nao";
-                                    for (char c : editTextUser.getText().toString().toCharArray()) {
-                                        if (c == '@') {
-                                            confir = "sim";
-                                            break;
-                                        }
-                                    }
-
-                                    if (confir == "sim") {
-
-                                        Toast.makeText(getApplicationContext(),
-                                                "Login inexistente",
-                                                Toast.LENGTH_LONG).show();
-                                    } else {
-                                      
-                                        Toast.makeText(getApplicationContext(),
-                                                "Email não existente",
-                                                Toast.LENGTH_LONG).show();
-                                    }
-                                }
+                                // Usuário é do tipo 'usuário'
+                                Log.d("user", "Usuário logado");
+                                Intent i = new Intent(getApplicationContext(), HomeUser.class);
+                                startActivity(i);
                             }
                         }
-                    });
+
+                    } else {
+
+                        //verificação de entrada
+
+                        if (editTextSenha.getText().toString().toCharArray().length < 6) {
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Senha não possui a quantidade necessária",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            String confir = "nao";
+                            for (char c : editTextUser.getText().toString().toCharArray()) {
+                                if (c == '@') {
+                                    confir = "sim";
+                                    break;
+                                }
+
+                            }
+
+                            if (confir == "sim") {
+
+                                Toast.makeText(getApplicationContext(),
+                                        "Login inexistente",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+
+                                Toast.makeText(getApplicationContext(),
+                                        "Email não existente",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        //sucesso no login
+
+
+
+                    }
+                }
+            });
         }
     }
 
-    private void atenUser(String email, String senha) {
-        mAuth.signInWithEmailAndPassword(email, senha)
-                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
 
-
-
-
-                        } else {
-                            Toast.makeText(Main.this, "Falha ao fazer login. ", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
 
 
     public void btnCadastro(View view){
