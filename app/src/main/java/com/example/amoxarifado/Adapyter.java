@@ -15,12 +15,14 @@ public class Adapyter extends BaseAdapter {
 
     List<String> Nome ;
     List<String> Quantidade ;
+    List<String> Id ;
 
     LayoutInflater inflater;
 
-    public Adapyter(Context context, List<String> nome, List<String> quantidade ){
+    public Adapyter(Context context, List<String> nome, List<String> quantidade, List<String>id){
         this.context = context;
         this.Nome = nome;
+        this.Id = id;
         this.Quantidade = quantidade;
         inflater = LayoutInflater.from(context);
     }
@@ -48,11 +50,14 @@ public class Adapyter extends BaseAdapter {
 
         TextView nometv = convertView.findViewById(R.id.textViewNome);
         TextView quantidadetv = convertView.findViewById(R.id.textViewQuantidade);
+        TextView idtv = convertView.findViewById(R.id.textViewId);
 
 
         nometv.setText(Nome.get(position));
-
         quantidadetv.setText(Quantidade.get(position));
+        idtv.setText(Id.get(position));
+
+
         return convertView;
     }
 }

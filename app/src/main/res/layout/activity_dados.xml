@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="voltar"
-    tools:context=".Dados">
+    tools:context=".DadosAdm">
 
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:onClick="apagarContato"
+        android:onClick="apagar"
         android:text="Apagar item"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"

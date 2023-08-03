@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
-public class Dados extends AppCompatActivity {
+public class DadosAdm extends AppCompatActivity {
     Map<String, String> dadosContatos;
     TextView tvNome, tvQuantidade, tvId;
     FirebaseAuth mAuth;
@@ -56,12 +56,9 @@ public class Dados extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
     }
 
-    public void atualizar(View view){
-        Intent intent = new Intent(getApplicationContext(), Atualizar.class);
-        startActivity(intent);
-    }
 
-    public void apagarContato(View view){
+
+    public void apagar(View view){
         deleteRef = database.getReference("User/" + mAuth.getUid()
                 + "/Item/" + dadosContatos.get("Nome") + "/");
 
@@ -71,13 +68,13 @@ public class Dados extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getApplicationContext(),
-                                    "Contato deletado com sucesso",
+                                    "Item deletado com sucesso",
                                     Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), HomeAdm.class);
                             startActivity(i);
                         }else {
                             Toast.makeText(getApplicationContext(),
-                                    "Contato não foi deletado com sucesso",
+                                    "Item não foi deletado com sucesso",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

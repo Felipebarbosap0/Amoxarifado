@@ -110,10 +110,10 @@ public class CriacaoItem extends AppCompatActivity {
                             reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    myRef = database.getReference("User/" + mAuth.getUid() + "/Item/" + Nome.getText().toString() +  "/");
+                                    myRef = database.getReference( "/Item/" + Nome.getText().toString() +  "/");
 
                                     dados.put("ID",Id.getText().toString());
-                                    dados.put("Quanridade",Quantidade.getText().toString());
+                                    dados.put("Quantidade",Quantidade.getText().toString());
                                     dados.put("Url", uri.toString());
 
 
